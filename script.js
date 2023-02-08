@@ -81,12 +81,83 @@ class LinkedList {
     }
 
     // Return true if the passed value is in the list
+    contains(value) {
+        let currentNode = this.head;
 
+        while (currentNode != null) {
+            if (currentNode.value === value) {
+                return true;
+            }
+            return false;
+        }
+    }
 
     // Return index of node containing value or null 
+    find(value) {
+        let currentNode = this.head;
+        let nodeCount = 0;
 
+        while (currentNode != null) {
+            if (currentNode.value === value) {
+                return nodeCount;
+            }
+            currentNode = currentNode.nextNode;
+            nodeCount++;
+        }
+        return null;
+    }
 
     // Represent LinkedList objects in easy to read string
+    toString() {
+        let currentNode = this.head;
+        let stringList = "";
+
+        while (currentNode != null) {
+            stringList += `(${currentNode.value}) -> `;
+            currentNode = currentNode.nextNode;
+        }
+        return (stringList += "null");
+    }
+
+    // Insert new node at given index
+    insertAt(value, index) {
+        if (this.head == null) {
+            this.prepend(value);
+        } else {
+            let currentNode = this.head;
+            let previousNode = null;
+
+            for (let i = 0 ; i < index ; i++) {
+                previousNode = currentNode;
+                currentNode = currentNode.nextNode;
+                if (currentNode == null) {
+                    break;
+                }
+            }
+            const addedNode = new Node(value);
+            previousNode.nextNode = addedNode;
+            addedNode.nextNode = currentNode;
+        }
+    }
+
+
+    // Remove node at given index
+    removeAt(index) {
+        if (this.head == null) {
+            return "Empty list";
+        }
+
+        let currentNode = this.head;
+        let previousNode = null;
+        for (let i = 0 ; i < index ; i++) {
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+            if (currentNode == null) {
+                return "There is no item at this index";
+            }
+        }
+        previousNode.nextNode = currentNode.nextNode;
+    }
 }
 
 
@@ -102,10 +173,10 @@ const testList = new LinkedList();
 testList.prepend('test 1');
 testList.append('test 3');
 testList.prepend('test 2')
-console.log(testList);
+console.log(testList.toString());
 console.log(testList.size())
 console.log(testList.tail())
-console.log(testList.at(1));
-console.log(testList.at(2));
-console.log(testList.at(3));
-console.log(testList.at(0));
+testList.insertAt('test 111', 1)
+console.log(testList.toString())
+testList.removeAt(1)
+console.log(testList.toString())
