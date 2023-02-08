@@ -13,7 +13,7 @@ class LinkedList {
             //set tail
             let tail = this.head;
             //cycle through node tails until next is null
-            while (tail.nextNode != null) {
+            while (tail.nextNode) {
                 tail = tail.nextNode;
             }
             //once at end node, append newNode as next
@@ -35,7 +35,7 @@ class LinkedList {
     size() {
         let currentNode = this.head;
         let counter = 0;
-        while (currentNode != null) {
+        while (currentNode) {
             counter++;
             currentNode = currentNode.nextNode
         }
@@ -50,7 +50,7 @@ class LinkedList {
     // Return the last node in the list
     tail() {
         let currentNode = this.head;
-        while (currentNode.nextNode != null) {
+        while (currentNode.nextNode) {
             currentNode = currentNode.nextNode;
         }
         return currentNode;
@@ -73,7 +73,7 @@ class LinkedList {
         let currentNode = this.head;
         let previousNode = null;
 
-        while (currentNode.nextNode != null) {
+        while (currentNode.nextNode) {
             previousNode = currentNode;
             currentNode = currentNode.nextNode;
         }
@@ -84,7 +84,7 @@ class LinkedList {
     contains(value) {
         let currentNode = this.head;
 
-        while (currentNode != null) {
+        while (currentNode) {
             if (currentNode.value === value) {
                 return true;
             }
@@ -97,7 +97,7 @@ class LinkedList {
         let currentNode = this.head;
         let nodeCount = 0;
 
-        while (currentNode != null) {
+        while (currentNode) {
             if (currentNode.value === value) {
                 return nodeCount;
             }
@@ -112,7 +112,7 @@ class LinkedList {
         let currentNode = this.head;
         let stringList = "";
 
-        while (currentNode != null) {
+        while (currentNode) {
             stringList += `(${currentNode.value}) -> `;
             currentNode = currentNode.nextNode;
         }
